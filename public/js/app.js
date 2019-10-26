@@ -39719,7 +39719,7 @@ var render = function() {
                             })
                           ]),
                           _vm._v(" "),
-                          _c("div", { staticClass: "form-check col-11" }, [
+                          _c("div", { staticClass: "form-check col-9" }, [
                             _c("label", { staticClass: "form-check-label" }, [
                               _vm._v("\n            Remember me \n      ")
                             ])
@@ -39727,7 +39727,7 @@ var render = function() {
                         ])
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "col-sm-3" }, [
+                      _c("div", { staticClass: "col-sm-2" }, [
                         _c(
                           "button",
                           {

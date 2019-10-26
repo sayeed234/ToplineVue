@@ -35,14 +35,14 @@
       <input class="form-check-input " type="checkbox" for="gridCheck" id="gridCheck">
 
     </div>
-      <div class="form-check col-11">
+      <div class="form-check col-9">
       <label class="form-check-label" >
         &nbsp;&nbsp;  Remember me 
       </label>
   </div>
   </div>
   </div>
-          <div class="col-sm-3">
+          <div class="col-sm-2">
             <button type="submit" class="btn btn-primary">Sign in</button>
           </div>
       </div>
