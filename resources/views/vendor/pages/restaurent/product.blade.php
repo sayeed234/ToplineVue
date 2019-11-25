@@ -122,17 +122,15 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
             <label>Product Image (550 X 550)</label>
             <input class="form-control image"  type="file" name="image">
         </div>
-        <div class=" col-sm-2 custom-control custom-checkbox custom-control-inline">
-        </div>
-
-
-        
-      @foreach($menus as $menu)
-        <div class=" col-sm-2 custom-control custom-checkbox custom-control-inline">
-        <input type="checkbox" class="custom-control-input menu" name="menu[]" value="{{ $menu->id }}" id="defaultInlinee{{ $menu->id }}">
-          <label class="custom-control-label" for="defaultInlinee{{ $menu->id }}">{{ $menu->menu}}</label>
-      </div>
-      @endforeach
+      
+        <div class="col-sm-4 form-group">                	
+          <label>Select Menu</label>
+          <select class="form-control"  name="menu[]" multiple="multiple" >
+              @foreach($menus as $menu)       
+             <option class="form-control"  value="{{ $menu->id }}" >{{ $menu->menu}}</option>
+             @endforeach
+          </select>
+         </div>
         </div>
       </div>
     <div class="modal-footer">
@@ -157,22 +155,6 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     </div>
   </div>
 </div> 
-{{-- <div class="card shadow mb-4">
-       <div class="row">
-        @if (session('delete'))
-        <div class="alert alert-dismissible alert-danger">
-          <button type="button" class="close" data-dismiss="alert">×</button>
-          <strong> Remove Successfully</strong>
-        </div>
-        @endif
-        @if (session('add'))
-        <div class="alert alert-dismissible alert-success">
-          <button type="button" class="close" data-dismiss="alert">×</button>
-          <strong> Add Successfully</strong>
-        </div>
-        @endif
-  </div>
-</div> --}}
     <div class="card-body">
       <div class="table-responsive">
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">

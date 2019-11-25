@@ -145,18 +145,6 @@ class RestaurentController extends Controller {
        return $data;
    }
 
-
-
-
-
-
-
-
-
-
-
-
-
    public function productupdate(Request $request){
 
     //dd($request->all());
