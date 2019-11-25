@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Session;
 
 class DashboardController extends Controller
 {
@@ -13,14 +14,19 @@ class DashboardController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     public function index()
     {
-        return view('admin.indexAdmin');
+        if(Session::get('role')==1){
+            return view('admin.indexAdmin');
+        }       
+        else {
+            return redirect()->back();
+        }
     }
 
     /**

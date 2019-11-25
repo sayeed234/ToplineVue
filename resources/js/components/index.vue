@@ -24,34 +24,95 @@
         <div class="input-group-prepend">
           <div class="input-group-text"><i class="fa fa-lock" aria-hidden="true"></i></div>
         </div>
-        <input type="password" class="form-control" placeholder="Password">
+        <input type="password" class="form-control"  placeholder="Password">
       </div>
       </div>
       <br><br><br>
       <div>
-          <div class="col-sm-9">
-      <div class="form-group">
-    <div class="form-check col-1">
-      <input class="form-check-input " type="checkbox" for="gridCheck" id="gridCheck">
-
-    </div>
-      <div class="form-check col-9">
-      <label class="form-check-label" >
-        &nbsp;&nbsp;  Remember me 
+      <div class="col-sm-12">    
+        <div class="form-check">
+      <label class="form-check-label">
+      <input type="checkbox" class="form-check-input"   name="option1" value="something" style="margin-left:-60px;" >&nbsp;&nbsp;<span>Remember me</span>
       </label>
+    </div>
   </div>
   </div>
-  </div>
-          <div class="col-sm-2">
-            <button type="submit" class="btn btn-primary">Sign in</button>
-          </div>
-      </div>
+   <div class="col-sm-12">
+     <div class="col-sm-8"></div>
+      <div class="col-sm-4">
+         <button type="submit" class="btn btn-primary">Sign in</button>
+      </div>          
+    </div>  
+    <br><br><br>
+      <div class="col-sm-12">
+     <div class="col-sm-5">
+       <a href="" data-toggle="modal" data-target=".bd-example-modal">Registation</a>
+     </div>
+      <div class="col-sm-7">
+        <a href="">Forget Password</a>
+      </div>          
+    </div> 
       </div> 
     </div>
   </div>
 </div>
 
 
+<div class="modal fade bd-example-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+
+  <div class="modal-dialog ">
+    <div class="modal-content">
+     
+     <div class="row" style="padding:50px;">
+       <div class="col-md-2"></div>
+       <div class="col-md-8"><img src="http://topline.com.bd/img/toplonelogo.png" style="height:40px;width:250px;" class="d-inline-block float-lg-left float-md-left" ></div>
+       <div class="col-md-2"></div>   
+    <form  @submit="submit"> 
+
+    <div class="form-row">
+      <div class="form-group col-md-12">
+      <label for="inputEmail4"></label>
+      <input type="text"  class="form-control" v-model="name" placeholder="Enter Name">
+    </div>
+    <div class="form-group col-md-12">
+      <input type="number" class="form-control" v-model="mobile"  placeholder="Phone Number">
+    </div>
+    <div class="form-group col-md-12">
+      <input type="email" class="form-control" v-model="email"   name="email" placeholder=" Email">
+    </div>
+    <div class="form-group col-md-12">
+    <select class="form-control"  v-model="gender" >
+      <option>Gender</option>
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+    </select>
+    </div>
+    <div class="form-group col-md-12">
+      <input type="password" class="form-control" v-model="password"  placeholder=" Create Password">
+    </div>
+    <br><br>
+     <div class="col-sm-12"> 
+        <div class="form-check">
+      <label class="form-check-label">
+      <input type="checkbox" class="form-check-input"  required  name="option1" value="something" style="margin-left:-220px;" >&nbsp;&nbsp;<span>i read and agree to the terms and conditions</span>
+      </label>
+    </div>
+  </div>
+      <div class="form-group col-md-12">
+        <div class="col-md-9"></div>
+        <div class="col-md-3">
+           <button class="btn btn-success">Submit</button>
+           <!-- <input  class="form-control btn btn-sm btn-primary" value="signup"> -->
+           </div>
+     
+    </div>
+      </div>
+    </form>
+
+      </div> 
+    </div>
+  </div>
+</div>
 
     <slider></slider>
 <div class="top" style="margin-top:-210px;" >
@@ -92,8 +153,6 @@
                   <input type="text" placeholder="Filter by Keywords">
                 </div>
               </div> <!-- end .change-view -->
-
-
               <div class="product-details">
                 <div class="tab-content">
 
@@ -238,9 +297,7 @@
                         </div>
 
                       </div>
-
-                    
-
+                
                       <div class="col-md-3 col-sm-4 col-xs-6">
                         <div class="category-item">
 
@@ -1071,23 +1128,48 @@ export default {
     },
      data() {
             return {
-              service: []
-            }
+              service: [],
+  
+              name: '' ,
+              mobile: '' ,
+              email: '' ,
+              gender: '' ,
+              password: '' 
+            };
         },
 
         mounted() {
             this.getData();
+            console.log('Component mounted.')
         },
          methods: {
           getData() {
-               axios.get('/api/service').then(( service ) => {
+               axios.get('api/service').then(( service ) => {
                     console.log(service.data)
                     this.service= service.data;
 
                 })
                     .catch((err) => console.error(err));
             },
-        }   
+            submit(e) {
+                e.preventDefault();
+                let currentObj = this;
+                axios.post('api/register', {
+                    name: this.name,
+                    mobile: this.mobile,
+                    email: this.email,
+                    gender: this.gender,
+                    password: this.password
+                })
+                .then(function (response) {
+                    currentObj.output = response.data;
+                })
+                .catch(function (error) {
+                    currentObj.output = error;
+                });
+            }
+        }
+           
 }
 </script>
 <style >

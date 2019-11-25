@@ -10,9 +10,11 @@
   <meta name="author" content="">
   <link rel="icon" href="public/image/fevi2.png" type="image/gif" sizes="26x26">
 
-  <title>Topline || Dashboard</title>
 
-  @include('admin.partial.style')
+  
+  <title>Topline || MY Dashboard</title>
+
+  @include('vendor.partial.style')
 
 </head>
 
@@ -22,7 +24,7 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-    @include('admin.partial.sidebar')
+    @include('vendor.partial.sidebar')
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
@@ -33,7 +35,7 @@
 
         <!-- Topbar -->
         
-        @include('admin.partial.navbar')
+        @include('vendor.partial.navbar')
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
@@ -46,7 +48,7 @@
       <!-- End of Main Content -->
 
       <!-- Footer -->
-      @include('admin.partial.footer')
+      @include('vendor.partial.footer')
       <!-- End of Footer -->
 
     </div>
@@ -78,7 +80,7 @@
     </div>
   </div>
 
- @include('admin.partial.script')
+ @include('vendor.partial.script')
 
 </body>
 

@@ -2,7 +2,7 @@
 
           <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('dashboard')}}">
-            <div class="sidebar-brand-text mx-3">Topline </div>
+            <div class="sidebar-brand-text mx-3">Topline.com.bd </div>
           </a>
     
           <!-- Divider -->
@@ -12,7 +12,7 @@
           <li class="nav-item active">
             <a class="nav-link" href="{{route('dashboard')}}">
               <i class="fas fa-fw fa-tachometer-alt"></i>
-              <span>Dashboard</span></a>
+              <span> Admin Dashboard</span></a>
           </li>
     
           <!-- Divider -->
@@ -50,9 +50,11 @@
             <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
               <div class="bg-white py-2 collapse-inner rounded">
               <a class="collapse-item" href="{{route('service')}}">Service Category</a>
-                <a class="collapse-item" href="">Primary Category</a>
-                <a class="collapse-item" href="">Secondary Category</a>
-                <a class="collapse-item" href="utilities-other.html">Other</a>
+              <a class="collapse-item" href="{{route('doctor_category')}}">Doctor Category</a>
+                <a class="collapse-item" href="{{route('menu')}}">Restaurent Menu</a>
+                <a class="collapse-item" href="{{route('category')}}">Restaurent Category</a>
+              <a class="collapse-item" href="{{ route('grocery_menu') }}">Grocery Menu</a>
+                <a class="collapse-item" href="{{ url('grocery_category') }}">Grocery Category</a>
               </div>
             </div>
           </li>

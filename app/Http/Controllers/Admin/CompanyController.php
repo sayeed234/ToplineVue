@@ -69,7 +69,7 @@ class CompanyController extends Controller
             $imageUrl = $companyById->image;
         }
          $this->imge($request,$imageUrl);
-         return redirect()->back();
+         return redirect()->back()->with('edit','success');
       
        
       }

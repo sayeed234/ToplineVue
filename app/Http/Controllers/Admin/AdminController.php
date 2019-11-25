@@ -7,15 +7,10 @@ use App\Http\Controllers\Controller;
 use App\Admin\TopUser;
 use DateTime;
 use DB;
-
+use Session;
 class AdminController extends Controller
 {
 
-
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     
     public function index(){
 
@@ -26,6 +21,12 @@ class AdminController extends Controller
     }
     public function store(Request $request){
 
+
+      $data=TopUser::where('mobile', $request->phone)->where('status',1)->first();
+      if($data!=''){
+           return redirect()->back()->with('alredy','admin');
+      }
+         
             $image=$request->file('image');
             $name=uniqid().$image->getClientOriginalName();
             $uploadPath='public/image/';
@@ -33,9 +34,10 @@ class AdminController extends Controller
             $imageUrl=$uploadPath.$name;
             $this->img($request,$imageUrl);
           
-            return redirect()->back();
-        }
-              public function img($request,$imageUrl){
+            return redirect()->back()->with('add','admin');
+       
+      }
+              protected function img($request,$imageUrl){
                       $current_date = new DateTime("now");
                       $admin=new TopUser();
                       $admin->name=$request->name;
@@ -43,8 +45,8 @@ class AdminController extends Controller
                       $admin->email=$request->email;
                       $admin->address=$request->address;
                       $admin->joindate=$current_date->format("Y-m-d");
-                      $admin->created_by='admin';
-                      $admin->updated_by='admin';
+                      $admin->created_by=Session::get('logid');
+                      $admin->updated_by=Session::get('logid');
                       $admin->type='Admin';
                       $admin->roleid=1;
                       $admin->status=1;
@@ -77,7 +79,7 @@ class AdminController extends Controller
                     $imageUrl = $companyById->image;
                 }
                  $this->imge($request,$imageUrl);
-                 return redirect()->back();
+                 return redirect()->back()->with('edit','admin');
                              
               }
             
@@ -87,7 +89,7 @@ class AdminController extends Controller
                          $admin->mobile=$request->phone;
                          $admin->email=$request->email;
                          $admin->address=$request->address;
-                         $admin->updated_by='admin';
+                         $admin->updated_by=Session::get('logid');
                          $admin->image=$imageUrl;
                          $admin->save();      
             
@@ -105,5 +107,19 @@ class AdminController extends Controller
                       return redirect()->back();
                     }
                     
+                  }
+
+                  public function userstore(Request $request){
+                    dd($reques);
+
+                    return response()->json([$request->all()] ,200);
+                    // $user=new TopUser();
+                    // $user->name=$request->name;
+                    // $user->mobile=$request->mobile;
+                    // $user->email=$request->email;
+                    // $user->gender=$request->gender;
+                    // $user->password=$request->password;
+                    // $user->save(); 
+                    // dd($user);    
                   }
 }

@@ -9,7 +9,7 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
 <div class="modal-content">
 <div class="modal-header">
-    <h5 class="modal-title" id="exampleModalLongTitle">Create A New Shop</h5>
+    <h5 class="modal-title" id="exampleModalLongTitle">Create New </h5>
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
@@ -27,19 +27,19 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                </select>
             </div>
             <div class="col-sm-4 form-group">
-                 <label for="Max Value"> Shop Name</label>
+                 <label for="Max Value">Name</label>
                  <input class="form-control" required  type="text" name="shopname">
            </div>
             <div class="col-sm-4 form-group">
                     <label for="Max Value">Agreement</label>
-                    <input class="form-control" type="file" name="agreement">
+                    <input class="form-control" required  type="file" name="agreement">
            </div> 
            <div class="col-sm-4 form-group">
               <label for="Max Value">Owner Name</label>
            <input class="form-control"  type="text" name="ownername">
         </div> 
             <div class="col-sm-4 form-group">
-                 <label for="Max Value">Phone</label>
+                 <label for="Max Value">Phone ( User Id )</label>
                  <input class="form-control" required type="number" name="phone">
            </div>
            <div class="col-sm-4 form-group">
@@ -55,11 +55,11 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                  <input class="form-control" type="number" name="pphone">
             </div>
             <div class="col-sm-4 form-group">
-                <label for="Max Value">Tin No</label>
-                <input class="form-control" type="text" name="tin">
+                <label for="Max Value">Slug</label>
+                <input class="form-control" type="text" name="slug">
            </div>
             <div class="col-sm-4 form-group">
-                 <label for="Max Value"> Shop Address</label>
+                 <label for="Max Value"> Address</label>
                  <input class="form-control"  required type="text" name="address">
             </div>
                   <div class="col-sm-4 form-group">
@@ -151,8 +151,8 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                  <input class="form-control pphone" type="number" name="pphone">
             </div>
             <div class="col-sm-4 form-group">
-                <label for="Max Value">Tin No</label>
-                <input class="form-control tin" type="text" name="tin">
+                <label for="Max Value">Slug</label>
+                <input class="form-control slug" type="text" name="slug">
            </div>
             <div class="col-sm-4 form-group">
                  <label for="Max Value"> Shop Address</label>
@@ -187,8 +187,17 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 <div class="card shadow mb-4">
     <div class="card-header py-12">
     <div class="row">
-        <div class="col-md-6"><h5 class="m-0 font-weight-bold ">All Vendor Shop</h5></div>
+        <div class="col-md-6"><h5 class="m-0 font-weight-bold ">All Vendors</h5></div>
         <div class="col-md-6">
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>This number already exists other account</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
                 <button type="button" class="btn btn-success fa-pull-right" data-toggle="modal" data-target="#exampleModalCenter" >
                     New Vendor                    
             </button>
@@ -211,7 +220,6 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
               <th>Action</th>
             </tr>
           </thead>
-
           <tbody>
             <?php $sl=1; ?>
             @foreach($vendor as $ven)
@@ -278,7 +286,7 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                   $('.address').val(response.address);
                   $('.powner').val(response.contact_name);
                   $('.pphone').val(response.Contact_mobile);
-                  $('.tin').val(response.tin);
+                  $('.slug').val(response.slug);
                   $('.bankacc').val(response.bank);
                   $('.nid').val(response.nid);
                   $('.agredate').val(response.agr_date);

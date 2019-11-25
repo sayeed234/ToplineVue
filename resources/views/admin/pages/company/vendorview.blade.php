@@ -16,7 +16,13 @@
 </div>
 
  </div> 
-           
+     
+ <?php
+  $admin=DB::table('top_users')->where('top_users.id',$vendorview->created_by)->first();
+  //dd($admin);
+  $admin2=DB::table('top_users')->where('top_users.id',$vendorview->updated_by)->first();
+  //dd($admin2);
+ ?>
 <div class="row">
           <div class="col-md-6">
           <div class="card">
@@ -98,12 +104,16 @@
                     </tr>       
                     <tr>
                     <th scope="row">Created By</th>
-                    <td>{{$vendorview->created_by}}</td>
+                    <td>  @if($admin->name=='null') ------- @else{{ $admin->name}} @endif </td>
                     </tr>
                      <tr>
                     <th scope="row">Updated By</th>
-                    <td>{{$vendorview->updated_by}}</td>
+                    <td> @if($admin2->name=='null') ------- @else{{ $admin2->name}} @endif</td>
                     </tr>
+                    <tr>
+                    <th scope="row">Slug</th>
+                    <td>{{$vendorview->slug}}</td>
+                     </tr>
                     <tr>
                     <th scope="row">Password</th>
                     <td></td>

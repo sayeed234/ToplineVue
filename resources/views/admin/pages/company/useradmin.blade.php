@@ -47,7 +47,7 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     </div>     
                 <div class="col-sm-6 form-group">                	
             <label>Photo(Size 250 X 100)</label>
-            <input class="form-control"  type="file" name="image">
+            <input class="form-control" required  type="file" name="image">
         </div>
         </div>
     </div>
@@ -112,7 +112,17 @@ aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="card-header py-12">
     <div class="row">
         <div class="col-md-6"><h5 class="m-0 font-weight-bold ">Admin Information</h5></div>
+     
         <div class="col-md-6">
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>This number already exists other account</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
                 <button type="button" class="btn btn-success fa-pull-right" data-toggle="modal" data-target="#exampleModalCenter" >
                         Add Admin                    
             </button>

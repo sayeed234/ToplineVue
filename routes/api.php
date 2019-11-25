@@ -22,3 +22,5 @@ Route::get('/company', 'Admin\CompanyController@apiindex')->name('company');
 
 Route::get('/service','Admin\ServiceController@indexapi');
 
+Route::post('/register','Admin\AdminController@userstore');
+

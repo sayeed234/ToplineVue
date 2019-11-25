@@ -17,7 +17,8 @@
 
 
   
-     <a class="nav-link nav-item link " href=""><i class="fa fa-plus-square"></i> Register</a>
+     <a class="nav-link nav-item link " href="" data-toggle="modal" data-target=".bd-example-modal"><i class="fa fa-plus-square"></i> Register</a>
+
      <a class="nav-link nav-item link"></a>
      <a class="nav-link nav-item link"></a>
      <a class="nav-link nav-item link"></a>

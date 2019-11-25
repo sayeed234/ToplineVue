@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DateTime;
+use App\Admin\TopUser;
+use Session;
 
 class HomeController extends Controller
 {
@@ -11,10 +14,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     /**
      * Show the application dashboard.
@@ -25,5 +28,35 @@ class HomeController extends Controller
     {
         return view('admin.index-admin');
     }
+    public function users(Request $request){
+      $request->validate([
+        'mobile' => 'required',
+    ]);
+    $data=TopUser::where('mobile',$request->mobile)->where('status',1)->first();
+    if($data!=''){
+        return redirect()->back()->with('alredy','admin');
+    }
+        $current_date = new DateTime("now");
+          $user=new TopUser();
+          $user->name=$request->name;
+          $user->mobile=$request->mobile;
+          $user->email=$request->email;
+          $user->gender=$request->gender;
+          $user->password=bcrypt($request->password);
+          $user->login_id=$current_date->format("isY");
+          $user->type='Guest';
+          $user->roleid=3;
+          $user->status=1;
+          $user->save();
+
+          Session::put('logid',$user->id);
+          Session::put('name',$user->name);
+          Session::put('mobile',$user->mobile);
+          Session::put('role',$user->roleid);
+
+          return redirect()->back()->with('user','success');
+
+  
+        }
 }
   

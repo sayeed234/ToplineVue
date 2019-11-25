@@ -6,7 +6,7 @@
 
         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+        <div class="modal-dialog  modal-dialog-centered" role="document">
         <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLongTitle">Our Service</h5>
@@ -18,14 +18,18 @@
           @csrf
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-sm-12 form-group">
+                    <div class="col-sm-6 form-group">
                         <label for="Max Value">Name</label>
                         <input class="form-control" required  type="text" name="name">
                     </div> 
-                    <div class="col-sm-12 form-group">
+                    <div class="col-sm-6 form-group">
                       <label for="Max Value">Icon</label>
                       <input class="form-control" required  type="text" name="icon">
                   </div>
+                  <div class="col-sm-6 form-group">
+                    <label for="Max Value">Slider</label>
+                    <input class="form-control" required  type="file" name="image">
+                </div>
                 </div>
             </div>
             <div class="modal-footer">
@@ -42,7 +46,7 @@
 
         <div class="modal fade" id="exampleModalCenter_edit" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog  modal-sm modal-dialog-centered" role="document">
+        <div class="modal-dialog   modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">Update Form</h5>
@@ -54,19 +58,24 @@
                 @csrf
             <div class="modal-body">
                             <div class="row">
-                  <div class="col-sm-12 form-group">
+                  <div class="col-sm-6 form-group">
                             <label for="Max Value">Name</label>
                             <input class="form-control name"  type="text" name="name">
                             <input class="cId" type="hidden" name="id" id="id">
                   </div>
-                  <div class="col-sm-8 form-group">
+                  <div class="col-sm-6 form-group">
                             <label for="Max Value">Icon</label>
                             <input class="form-control icon"  type="text" name="icon">
                   </div>  
-                  <div class="col-sm-4 form-group">
+               
+                  <div class="col-sm-6 form-group">
                             <label for="Max Value">Sort</label>
-                            <input class="form-control sort" type="number" name="sort">
+                            <input class="form-control sort" min="1" type="number" name="sort">
                       </div>
+                      <div class="col-sm-6 form-group">
+                        <label for="Max Value">Slider</label>
+                        <input class="form-control image" type="file" name="image">
+                    </div>
                     </div>
                   </div>
             <div class="modal-footer">
@@ -98,8 +107,7 @@
                       <th>Icon</th>
                       <th>Sort</th>
                       <th>Status</th>
-                      <th>Created By</th>
-                      <th>Update By</th>
+                      <th>Slider</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -112,8 +120,7 @@
                       <td>
                         @if($Value->status==0)Inactive @else Active @endif
                       </td>
-                      <td>{{$Value->created_by}}</td>
-                      <td>{{$Value->update_by}}</td>
+                      <td><img src="{{asset($Value->slider)}}" height="60px" width="120px;"></td>
                       <td>
 
                           @if($Value->status==0)
@@ -160,7 +167,7 @@
                           $('.name').val(response.name);
                           $('.cId').val(response.id);
                           $('.icon').val(response.icon);
-                          $('.sort').val(response.sort);                     
+                          $('.sort').val(response.sort);                                        
           
                       },
                       error:function(xhr,status,error){

@@ -3652,12 +3652,12 @@ h3,
 }
 h1,
 .h1,
-h2,
+h2,    
 .h2,
 h3,
 .h3 {
   margin-top: 1.42857143;
-  margin-bottom: 1.42857143;
+  /* margin-bottom: 1.42857143; */
 }
 h1 small,
 .h1 small,
