@@ -93,7 +93,7 @@
             <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
               <div class="bg-white py-2 collapse-inner rounded">
               <a class="collapse-item" href="{{url('/restaurent_info/'.Session::get('logid'))}}">My Profile</a>
-              <a class="collapse-item" href="{{ route('products') }}">Products</a>
+              <a class="collapse-item" href="{{ route('grocery_products') }}">Products</a>
               </div>
             </div>
           </li>

@@ -7,9 +7,11 @@ use App\Http\Controllers\Controller;
 use DB;
 use App\Admin\Vendor;
 use App\Admin\RestaurentProduct;
+use App\Vendor\GroceryProduct;
 use App\Admin\Menu;
 use App\Admin\GroceryMenu;
 use App\Admin\GroceryCategory;
+use Response;
 
 class HospitalProfileController extends Controller
 {
@@ -106,20 +108,13 @@ class HospitalProfileController extends Controller
       'chambers'=>$chambers
      ]);
     }else if($result->service_id==7){
-        $profile= DB::table('vendors')
+        $profile=DB::table('vendors')
                ->join('top_users', 'top_users.id', '=', 'vendors.user_id')
                ->where('top_users.status', 1)
                ->where('vendors.slug', $slug)
                ->select('vendors.*', 'vendors.id')
                ->first();
-   
-         $product=DB::table('restaurent_products')
-               ->join('vendors', 'vendors.id', '=', 'restaurent_products.restaurent_id')
-               ->where('restaurent_products.status',1)
-               ->where('restaurent_products.restaurent_id',$profile->id)
-               ->select('restaurent_products.*', 'restaurent_products.id')
-               ->get();
-               //dd($product);
+            //dd($product);
         $menu=DB::table('grocery_menus')
               ->orderBy('grocery_menus.sort', 'asc')
               ->get();
@@ -127,7 +122,6 @@ class HospitalProfileController extends Controller
    
           return view('FrontEnd.pages.grocery',[
            'profile'=>$profile,
-           'product'=>$product,
            'menu'=>$menu
           ]);
     }
@@ -152,6 +146,58 @@ class HospitalProfileController extends Controller
         'related'=>$related
         ]);
  }
+ public function gsingleproduct($id){
+    $productdetails=GroceryProduct::find($id);
+  
+   // dd($productdetails);
+    $related=DB::table('grocery_products')
+            ->where('grocery_products.grocery_id',$productdetails->grocery_id)
+            ->where('grocery_products.status',1)
+            ->inRandomOrder()
+            ->limit(5)
+            ->get();
+      //dd($related);
+ return view('FrontEnd.pages.grocery_single_product',[
+     'productdetails'=>$productdetails,
+     'related'=>$related
+     ]);
+}
 
+public function tabshow(Request $request){
+  //dd($request->id);
+  if ($request->has('id') && !empty($request->id)) {
+    $products = DB::table('grocery_products')
+     ->join('vendors', 'vendors.id', '=', 'grocery_products.grocery_id')
+     ->where('grocery_products.status',1)
+     ->where('grocery_products.grocery_menu',$request->id)
+     ->where('grocery_products.grocery_id',$request->profileId)
+     ->select('grocery_products.*', 'grocery_products.id')
+     ->get();
+          
+    return response()->json($products);
+  }
+  if ($request->has('profileId') && !empty($request->profileId)) {
+
+    $products = DB::table('grocery_products')
+     ->join('vendors', 'vendors.id', '=', 'grocery_products.grocery_id')
+     ->where('grocery_products.status',1)
+     ->where('grocery_products.grocery_id',$request->profileId)
+     ->select('grocery_products.*', 'grocery_products.id')
+     ->get();
+   return response()->json($products);
+  }
+  return response()->json([]);
+
+}
+
+public function getMenu()
+  {
+    $menu=DB::table('grocery_menus')
+              ->orderBy('grocery_menus.sort', 'asc')
+              ->get();
+    return response()->json($menu);
+
+
+  }
 
 }

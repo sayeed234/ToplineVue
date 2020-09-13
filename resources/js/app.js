@@ -25,11 +25,14 @@ axios.defaults.headers.common = {
 };
 import axios from 'axios';
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('layout', require('./components/Layout.vue').default);
- Vue.component('index-topline', require('./components/index.vue').default);
- //Vue.component('topbar-topline', require('./components/topbar.vue').default);
- Vue.component('topline-footer', require('./components/ToplineFooter.vue').default);
+import store from './state/store';
+
+//Vue.use(Vuex)
+
+//Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('cart', require('./components/Cart.vue').default);
+Vue.component('product-list', require('./components/ProductList.vue').default);
+Vue.component('menu-list', require('./components/MenuList.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -39,4 +42,5 @@ Vue.component('layout', require('./components/Layout.vue').default);
 
 const app = new Vue({
     el: '#app',
+    store,
 });

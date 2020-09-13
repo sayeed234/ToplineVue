@@ -29,7 +29,7 @@ Result for {{$slider->name}} {{$total}} Vendors || topline.com.bd
 
           </li>
 
-          <li class=""><a href="company-profile.html">Company</a>
+          <li class=""><a href="">Company</a>
           </li>
 
           <!--<li><a href="sample-page.html">Sample Page</a></li>-->

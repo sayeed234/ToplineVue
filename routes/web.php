@@ -49,6 +49,8 @@ Route::get('/vendorshop/status/{id}',[
 
 //Customer Details..........................................................................
 Route::get('/customerlist','Admin\CustomerController@index')->name('customerlist');
+Route::get('/customerlist/edit/{id}','Admin\CustomerController@edit');
+Route::post('/customerlist/update','Admin\CustomerController@update');
 
 //======================================Category===================================
 //service................................................................
@@ -102,6 +104,16 @@ Route::post('/userlogin','FrontEnd\LoginController@login');
 Route::post('/userlogout','FrontEnd\LoginController@logout');
 //home.....................................................
 Route::get('/','FrontEnd\HomeController@home');
+
+Route::get('/shipping','FrontEnd\HomeController@shipping');
+
+Route::get('/cart-show','FrontEnd\HomeController@cartshow');
+
+Route::get('/add-to-cart','FrontEnd\HomeController@addtocart')->name('add.to.cart');
+
+
+
+
 //search result.............................................
 Route::get('/Service/{id}','FrontEnd\AllresultController@allresult');
 //hospital vendor.............................................
@@ -109,6 +121,13 @@ Route::get('/v/{slug}','FrontEnd\HospitalProfileController@hospitalprofile');
 
 //restaurent single...............................................
 Route::get('/restaurent_product/{id}','FrontEnd\HospitalProfileController@singleproduct')->name('rsp');
+Route::get('/grocery_product/{id}','FrontEnd\HospitalProfileController@gsingleproduct')->name('gsp');
+
+Route::get('ajaxRequest','FrontEnd\HospitalProfileController@tabshow');
+
+Route::get('getMenu','FrontEnd\HospitalProfileController@getMenu');
+
+
 //********************************** VENDOR ****************************************************  
 Route::get('/mydashboard','Vendor\DashboardController@vendordashboard')->name('mydashboard');
 //================================hospital===================================
@@ -165,11 +184,21 @@ Route::get('/restaurent_product/status/{id}',[
     'uses'=>'Vendor\RestaurentController@productstatus',
     'as'=>'productstatus'
     ]);
+//Grocery product......................................................................
+
+Route::get('/grocery_products','Vendor\GroceryController@grocery_products')->name('grocery_products');
+Route::post('/grocery_products/store','Vendor\GroceryController@grocery_products_store');
+Route::get('/grocery_products/edit/{id}','Vendor\GroceryController@grocery_products_edit');
+Route::post('/grocery_products/update','Vendor\GroceryController@grocery_products_update');
+Route::get('/grocery_product/delete/{id}','Vendor\GroceryController@grocery_products_delete');
+Route::get('/grocery_product/status/{id}',[
+    'uses'=>'Vendor\GroceryController@gproductstatus',
+    'as'=>'gproductstatus'
+    ]);
 
 
 
-
-
+// Route::get('/grocery_products','Vendor\GroceryController@addToCart')->name('');
 
 
 

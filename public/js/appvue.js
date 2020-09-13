@@ -1782,17 +1782,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapActions"])({
@@ -6563,7 +6552,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nul {\n\t  list-style-type: none;\n\t  margin-top: 15%;\n\t  padding: 2%;\n\t  overflow: hidden;\n\t  background-color: gray;\n}\nli {\n\t  float: left;\n\t  border-right:1px solid #bbb;\n}\nli:last-child {\n\t  border-right: none;\n}\nli a {\n\t  display: block;\n\t  color: white;\n\t  text-align: center;\n\t  padding: 14px 16px;\n\t  font-size: 10px;\n\t  text-decoration: none;\n}\ntable {\n  font-family: arial, sans-serif;\n  border-collapse: collapse;\n  width: 100%;\n}\ntd, th {\n  text-align: left;\n  padding: 3px;\n}\n.sidebar {\n    min-height: 90%;\n    width: 20%;\n    position: fixed;\n    z-index: 100;\n    top: 0;\n    right: 0;\n    background-color: #85b7b0;\n    overflow-x: hidden;\n    transition: 0.5s;\n    padding-top: 60px;\n}\n\n", ""]);
+exports.push([module.i, "\nul {\n\t  list-style-type: none;\n\t  margin-top: 15%;\n\t  padding: 2%;\n\t  overflow: hidden;\n\t  background-color: gray;\n}\nli {\n\t  float: left;\n\t  border-right:1px solid #bbb;\n}\nli:last-child {\n\t  border-right: none;\n}\nli a {\n\t  display: block;\n\t  color: white;\n\t  text-align: center;\n\t  padding: 14px 16px;\n\t  font-size: 10px;\n\t  text-decoration: none;\n}\ntable {\n  font-family: arial, sans-serif;\n  border-collapse: collapse;\n  width: 100%;\n}\ntd, th {\n  text-align: left;\n  padding: 3px;\n}\n\n", ""]);
 
 // exports
 
@@ -39320,89 +39309,88 @@ var render = function() {
     ),
     _vm._v(" "),
     _c("div", { staticClass: "sidebar", attrs: { id: "mySidebar" } }, [
-      _vm._m(0),
+      _c(
+        "a",
+        {
+          staticClass: "closebtn",
+          attrs: { href: "javascript:void(0)", onclick: "closeNav()" }
+        },
+        [_vm._v("×")]
+      ),
       _vm._v(" "),
       _c(
         "table",
         { staticStyle: { "margin-top": "15%" } },
-        _vm._l(_vm.products, function(pro, index) {
-          return _c("tr", { key: index }, [
-            _c("td", [
-              _c(
-                "div",
-                {
-                  staticStyle: {
-                    display: "flex",
-                    "flex-flow": "column",
-                    "font-weight": "300"
-                  }
-                },
-                [
-                  _c("i", {
-                    staticClass: "fa fa-chevron-up",
-                    on: {
-                      click: function($event) {
-                        return _vm.addtoCart(pro)
-                      }
+        [
+          _vm._m(0),
+          _vm._v(" "),
+          _vm._l(_vm.products, function(pro, index) {
+            return _c("tr", { key: index }, [
+              _c("td", [
+                _c(
+                  "div",
+                  {
+                    staticStyle: {
+                      display: "flex",
+                      "flex-flow": "column",
+                      "font-weight": "300"
                     }
-                  }),
-                  _vm._v(
-                    "\n\t\t    \t\t\t" + _vm._s(pro.count) + "\n\t\t    \t\t"
-                  ),
-                  _c("i", {
-                    staticClass: "fa fa-chevron-down",
-                    on: {
-                      click: function($event) {
-                        return _vm.removeFromCart(pro)
+                  },
+                  [
+                    _c("i", {
+                      staticClass: "fa fa-chevron-up",
+                      on: {
+                        click: function($event) {
+                          return _vm.addtoCart(pro)
+                        }
                       }
-                    }
-                  })
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _c("td", [
-              _c("span", { staticStyle: { "font-size": "13px" } }, [
-                _vm._v(_vm._s(pro.name) + " ")
+                    }),
+                    _vm._v(
+                      "\n\t\t    \t\t\t" + _vm._s(pro.count) + "\n\t\t    \t\t"
+                    ),
+                    _c("i", {
+                      staticClass: "fa fa-chevron-down",
+                      on: {
+                        click: function($event) {
+                          return _vm.removeFromCart(pro)
+                        }
+                      }
+                    })
+                  ]
+                )
               ]),
-              _c("br"),
               _vm._v(" "),
-              _c("span", { staticStyle: { "font-size": "10px" } }, [
-                _vm._v("৳ " + _vm._s(pro.price))
+              _c("td", [_vm._v(_vm._s(pro.name))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(pro.price))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(pro.price * pro.count))]),
+              _vm._v(" "),
+              _c("td", [
+                _c("a", { attrs: { href: "" } }, [
+                  _c(
+                    "i",
+                    {
+                      staticClass: "fa fa-time",
+                      on: {
+                        click: function($event) {
+                          return _vm.removeProductAll(pro.id)
+                        }
+                      }
+                    },
+                    [_vm._v("X")]
+                  )
+                ])
               ])
-            ]),
-            _vm._v(" "),
-            _c("td", [
-              _c("span", { staticStyle: { "font-size": "13px" } }, [
-                _vm._v("৳ " + _vm._s(pro.price * pro.count))
-              ])
-            ]),
-            _vm._v(" "),
-            _c("td", [
-              _c("a", { attrs: { href: "" } }, [
-                _c("i", {
-                  staticClass: "fa fa-trash fa-2x",
-                  staticStyle: { color: "red" },
-                  on: {
-                    click: function($event) {
-                      return _vm.removeProductAll(pro.id)
-                    }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("hr")
-          ])
-        }),
-        0
+            ])
+          })
+        ],
+        2
       ),
       _vm._v(" "),
-      _c("button", { staticClass: "btn btn-warning" }, [
-        _c("span", [_vm._v(_vm._s(_vm.totalCount) + " Items")])
-      ]),
-      _vm._v(" "),
-      _c("button", { staticClass: "btn btn-info" }, [
+      _c("p", [
+        _c("span", [_vm._v(_vm._s(_vm.totalCount) + " Items")]),
+        _vm._v(" "),
         _c("span", [_vm._v("৳ " + _vm._s(_vm.totalPrice))])
       ]),
       _vm._v(" "),
@@ -39426,14 +39414,17 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        staticClass: "closebtn",
-        attrs: { href: "javascript:void(0)", onclick: "closeNav()" }
-      },
-      [_vm._v("×"), _c("hr")]
-    )
+    return _c("tr", [
+      _c("th", [_vm._v("Quntity")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Name")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Price")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Total")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Action")])
+    ])
   }
 ]
 render._withStripped = true
@@ -53457,8 +53448,8 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\Symex-IT 2\htdocs\ToplineCart\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\Symex-IT 2\htdocs\ToplineCart\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /var/www/html/ToplineBot/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /var/www/html/ToplineBot/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

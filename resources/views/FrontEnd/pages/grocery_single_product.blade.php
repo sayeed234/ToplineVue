@@ -16,7 +16,7 @@
           <i>/</i>
 
            <?php 
-           $result=DB::table('vendors')->where('vendors.id',$productdetails->restaurent_id)->first();
+           $result=DB::table('vendors')->where('vendors.id',$productdetails->grocery_id)->first();
            //dd($result);
            ?>
 
@@ -238,11 +238,11 @@
                     </div> <!-- end .rating -->
           </figure>
 
-          <h4><a href="{{ url('/restaurent_product/'.$related->id )}}">{{ $related->	product_name }}</a></h4>
+          <h4><a href="{{ url('/grocery_product/'.$related->id )}}">{{ $related->product_name }}</a></h4>
 
           <p>{{ str_limit($related->sortdescription,50) }}</p>
 
-          <a class="read-more" href="{{ url('/restaurent_product/'.$related->id )}}"><i class="fa fa-angle-right"></i>Read More</a>
+          <a class="read-more" href="{{ url('/grocery_product/'.$related->id )}}"><i class="fa fa-angle-right"></i>Read More</a>
 
           </div> <!-- end .recently-added -->
 

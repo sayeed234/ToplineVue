@@ -45,6 +45,7 @@ class HomeController extends Controller
           $user->password=bcrypt($request->password);
           $user->login_id=$current_date->format("isY");
           $user->type='Guest';
+          $user->joindate=$current_date->format("Y-m-d");
           $user->roleid=3;
           $user->status=1;
           $user->save();

@@ -2,16 +2,33 @@
 @section('title')
 {{$profile->vendor_name}} || topline.com.bd
 @endsection
+
+<style>
+/*#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 250px;
+  right: 10px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color:teal;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+#myBtn:hover {
+  background-color: #555;
+}*/
+</style>
+
 @section('content')
+
 <div class="header-search company-profile-height">
   <div class="company-heading-view" background="bgimage.jpg">
-    {{-- <div class="container">
-      <div class="button-content">
-        <button class="general-view-btn active"><i class="fa fa-newspaper-o"></i><span>General</span></button>
-        <button class="map-view-btn"><i class="fa fa-map-marker"></i><span>Map</span></button>
-        <button class="male-view-btn"><i class="fa fa-male"></i><span>Street</span></button>
-      </div>
-    </div> --}}
     <div class="company-slider-content">
 
       <div class="general-view" >
@@ -37,13 +54,6 @@
         
       </div> <!-- END .general-view -->
 
-      <div class="company-map-view">
-        <!--<div id="company_map_canvas"></div>-->
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1532.7393576213892!2d91.11010930638493!3d23.
-        9784999484396!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x375405bc1aeee443%3A0xfce3f35dfd78c2f2!2sSilver
-        %20Fork%20Chinese%20Restaurant!5e0!3m2!1sen!2sbd!4v1570095990535!5m2!1sen!2sbd"
-        width="100%" height="600" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
-      </div> <!-- END .company-map-view -->
 
       <div class="company-map-street">
         <div id="company_map_canvas_street"></div>
@@ -54,36 +64,8 @@
   </div> <!-- END .about-us-heading -->
 </div> <!-- END .SEARCH and slide-section -->
 
-
-
-<div id="mySidenav" class="sidenav">
-
-<a href="{{ url('/') }}" id="contact">0 Item </a>
-  
-</div>
 <div id="page-content">
-  <div class="container">
-      <div class="modal right fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-      
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel2">Right Sidebar</h4>
-              </div>
-      
-              <div class="modal-body">
-                <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                </p>
-              </div>
-      
-            </div><!-- modal-content -->
-          </div><!-- modal-dialog -->
-        </div><!-- modal -->
- 
-        
-
-        
+  <div class="container">      
     <div class="row">
       <div class="col-md-9 col-md-push-3">
         <div class="page-content company-profile">
@@ -310,53 +292,34 @@
    
     <div class="company-product">
 
-      <h2 class="text-uppercase mb30">{{$profile->vendor_name}}<br><span><a href="index.html">
-        <i  style="font-size:15px;" class="fa fa-home">&nbsp;HOME </i></a></span>
-        <span><i style="font-size:15px;" class="fa fa"><b>/</b> &nbsp;{{$profile->vendor_name}}</i></span></h2> 
-        
+        <h2 class="text-uppercase mb30">
+            {{$profile->vendor_name}}<br>
+            <span>
+                <a href="index.html">
+                    <i style="font-size:15px;" class="fa fa-home">&nbsp;HOME </i>
+                </a>
+            </span>
+            <span><i style="font-size:15px;" class="fa fa"><b>/</b> &nbsp;{{$profile->vendor_name}}</i></span>
+        </h2> 
         
         <div class="sort-by">
-          <!--<a href="index.html"><i  style="font-size:25px;" class="fa fa-home">HOME</i></a>-->
-          <select class="" data-placeholder="-sort by-">
+            <!--<a href="index.html"><i  style="font-size:25px;" class="fa fa-home">HOME</i></a>-->
+            <select class="" data-placeholder="-sort by-">
             <option value="option1">Name</option>
             <option value="option2">Tupe</option>
             <option value="option3">Name</option>
             <option value="option4">Type</option>
-          </select>
+            </select>
 
         </div>
 
-        <div class="row">
-
-
-          @foreach($product as $product)
-          <div class="col-sm-4 col-xs-6">
-            <div class="single-product">
-              <figure>
-                <img src="{{asset($product->thumbnail)}}" alt="">
-
-                <figcaption>
-                  <div class="bookmark">
-                    <a href="#"> Add to Cart</a>
-                  </div>
-
-                  <div class="read-more">
-                  <a href="{{ url('/restaurent_product/'.$product->id )}}"><i class="fa fa-angle-right"></i> Read More</a>
-                  </div>
-
-                </figcaption>
-              </figure>
-
-            <h4><a href="{{ url('/restaurent_product/'.$product->id )}}">{{  $product->product_name }}</a></h4>
-
-              <h5>Price:- {{ $product->price  }} Tk.</h5>
-            </div> <!-- end .single-product -->
-          </div> <!-- end .grid-layout -->
-
-        @endforeach 
-
-    </div> <!-- end .row -->
-  </div> <!-- end .company-product -->
+        <div>
+          <product-list :profile-id="{{ $profile->id }}" ref="productList"></product-list>
+          <cart></cart>
+        </div>
+        {{-- <div class="products">
+        </div> --}}
+    </div> <!-- end .company-product -->
 </div> <!-- end .tab-pane -->
 
 <div class="tab-pane" id="company-portfolio">
@@ -1239,9 +1202,6 @@
 <div class="col-md-3 col-md-pull-9 category-toggle">
   <button><i class="fa fa-briefcase"></i></button>
   <div class="page-sidebar company-sidebar">
-    <!--<i class="fa fa-home" aria-hidden="true"></i>-->
-    
-
     <ul class="company-category nav nav-tabs home-tab" role="tablist">
       
       <li >
@@ -1251,14 +1211,16 @@
       <li class="active">
         <a href="#company-product" role="tab" data-toggle="tab"><i class="fa fa-cubes" aria-hidden="true"></i>Product</a>
       </li>
+      <menu-list></menu-list>
 
-      @foreach($menu as $m)
+
+      {{-- @foreach($menu as $m)
       <li>
-        <a href="#company-product" role="tab" data-toggle="tab"><i class="{{ $m->icon }}" aria-hidden="true"></i>{{ $m->menu }}</a>
+        <a class="profile" href="#company-product" role="tab" getdata-id="{{ $m->id }}" data-toggle="tab"><i class="{{ $m->icon }}"  aria-hidden="true"></i>{{ $m->menu }}</a>
       </li>
-      @endforeach
+      @endforeach --}}
     </ul>
-
+<br><br><br><br>
     <div class="own-company">
       <a href="index.html"><i class="fa fa-home"></i>Back Home</a>
     </div>
@@ -1297,3 +1259,111 @@
 </div> <!-- end #page-content -->
 
 @endsection
+
+@section('style')
+{{-- <link href="{{asset('/css/appvue.css')}}" rel="stylesheet" />
+<link href="{{asset('/css/toplinevue.css')}}" rel="stylesheet" /> --}}
+@endsection
+
+@section('script')
+{{-- <script src="{{asset('/js/appvue.js')}}"></script>
+<script src="{{asset('/js/Toplinevue.js')}}"></script> --}}
+{{-- <script>
+    $( document ).ready(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        fetchProducts({profileId:"{{ $profile->id }}"})
+
+        $(".profile").click(function(){
+          debugger;
+            var id = $(this).attr('getdata-id');
+            //fetchProducts({id:$(this).attr('data-id')});  
+            $('#menulist').attr('data-id', id);
+        });  
+
+
+        function fetchProducts(parmsData) {
+            var productsDom = $('.products');
+            productsDom.html('loading')
+            var result = '';
+            $.ajax({
+                type:'GET',
+                url:'/ajaxRequest',
+                data: parmsData,
+                success:function(data){
+                    if(data && data.length > 0){
+                        result +='<div class="row">'
+
+                        $.each(data, function (index, value) {
+                            result += '<div class="col-sm-4 col-xs-6">'+
+                                        '<div class="single-product">'+
+                                            '<figure>'+
+                                                '<img src="/'+ value.thumbnail +'" alt="">'+
+
+                                                '<figcaption>'+
+                                                   
+                                                '</figcaption>'+
+                                            '</figure>'+
+
+                                            '<add-cart></add-cart>'+
+
+                                            '<h4><a href="' +'/grocery_product/' + value.id + '">' +  value.product_name + '</a></h4>'+
+
+                                            '<h5>Price:-' + value.price  + 'Tk.</h5>'+
+                                        '</div>'+
+                                    '</div>'
+                            
+                        });
+                        result +='</div>'
+
+                    }else{
+                        result += '<div class="alert alert-warning"><b>No product found</b></div>'
+
+                    }
+
+                    productsDom.html(result);
+                  
+                }
+            });
+        }
+    });
+
+</script> --}}
+<script>
+  function openNav() {
+    document.getElementById("mySidebar").style.width = "400px";
+   // document.getElementById("main").style.marginRight = "350px";
+  }
+
+  function closeNav() {
+    document.getElementById("mySidebar").style.width = "0";
+   // document.getElementById("main").style.marginRight = "0";
+  }
+</script>
+<script>
+  //Get the button
+  var mybutton = document.getElementById("myBtn");
+  
+  // When the user scrolls down 20px from the top of the document, show the button
+  window.onscroll = function() {scrollFunction()};
+  
+  function scrollFunction() {
+    if (document.body.scrollTop > 0 || document.documentElement.scrollTop > 0) {
+      mybutton.style.display = "block";
+    } 
+  }
+  
+  // When the user clicks on the button, scroll to the top of the document
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+  </script>
+  
+
+@endsection  
+
+

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 18, 2019 at 02:07 PM
+-- Generation Time: Jan 17, 2020 at 10:10 AM
 -- Server version: 10.3.16-MariaDB
 -- PHP Version: 7.3.7
 
@@ -95,6 +95,30 @@ INSERT INTO `doctors` (`id`, `vendor_id`, `name`, `qualification`, `speciality`,
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `doctor_categories`
+--
+
+CREATE TABLE `doctor_categories` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `doctor_category` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `doctor_categories`
+--
+
+INSERT INTO `doctor_categories` (`id`, `doctor_category`, `created_at`, `updated_at`) VALUES
+(1, 'Anesthesiology', '2019-11-21 09:38:47', '2019-11-21 09:39:40'),
+(2, 'Dermatology', '2019-11-21 09:39:54', '2019-11-21 09:39:54'),
+(3, 'medicine', '2019-11-21 09:40:09', '2019-11-21 09:40:09'),
+(4, 'Neuroradiology', '2019-11-21 10:24:03', '2019-11-21 10:24:03'),
+(5, 'Cardiothoracic', '2019-11-21 10:24:29', '2019-11-21 10:24:29');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `doctor_chambers`
 --
 
@@ -122,6 +146,91 @@ INSERT INTO `doctor_chambers` (`id`, `doctor_id`, `hospital_id`, `time`, `onday`
 (5, '20', '10', 'friday 12pm-3pm', 'Saturday,Sunday,Monday-Friday(3.00 PM)', NULL, '0', '0', NULL, '2019-11-13 11:35:52', '2019-11-13 14:37:39'),
 (6, '20', '15', 'friday 12pm-3pm', 'everyday', NULL, '0', '0', NULL, '2019-11-13 12:42:29', '2019-11-13 14:37:41'),
 (7, '21', '18', 'friday 12-23', 'Friday-Wednersday', 'Thursday', '0', '1', NULL, '2019-11-13 16:19:04', '2019-11-13 16:19:07');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `grocery_categories`
+--
+
+CREATE TABLE `grocery_categories` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `grocery_categories`
+--
+
+INSERT INTO `grocery_categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(2, 'Potatos', '2019-11-23 12:46:52', '2019-11-25 13:50:46'),
+(3, 'Rice', '2019-11-23 12:47:04', '2019-11-25 13:47:27'),
+(5, 'Drink', '2019-11-25 13:47:15', '2019-11-25 13:47:15'),
+(6, 'Shap', '2019-11-25 13:48:20', '2019-11-25 13:48:20'),
+(7, 'Cake', '2019-11-25 13:48:45', '2019-11-25 13:48:45'),
+(8, 'Corn', '2019-11-25 13:48:58', '2019-11-25 13:48:58'),
+(9, 'Egg', '2019-11-25 13:49:04', '2019-11-25 13:49:04'),
+(10, 'Dairy', '2019-11-25 13:50:18', '2019-11-25 13:50:18');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `grocery_menus`
+--
+
+CREATE TABLE `grocery_menus` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `menu` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `icon` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sort` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `grocery_menus`
+--
+
+INSERT INTO `grocery_menus` (`id`, `menu`, `icon`, `sort`, `created_at`, `updated_at`) VALUES
+(1, 'Rice', 'fa fa-cubes', '2', '2019-11-23 12:29:33', '2019-12-02 16:20:41'),
+(3, 'Shoe', 'fa fa-database', '21', '2019-11-23 12:32:30', '2019-12-02 16:22:42'),
+(4, 'Dal', 'fa fa-shopping-basket', '1', '2019-11-23 12:32:42', '2019-12-02 16:24:08'),
+(6, 'Oil', 'fa fa-coffee', '2', '2019-11-23 12:34:12', '2019-12-02 16:23:39');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `grocery_products`
+--
+
+CREATE TABLE `grocery_products` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `grocery_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `grocery_category` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `grocery_menu` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `product_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `price` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sortdescription` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `longdescription` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `thumbnail` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `image` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `grocery_products`
+--
+
+INSERT INTO `grocery_products` (`id`, `grocery_id`, `grocery_category`, `grocery_menu`, `product_name`, `price`, `sortdescription`, `longdescription`, `thumbnail`, `image`, `status`, `created_at`, `updated_at`) VALUES
+(1, '24', '3', '4', 'Basmoti Rice', '550', 'hello test', 'hello test hello test hello test', 'public/image/5ddbe3ecde054dd.PNG', 'public/image/5ddbe3ecddb61Beef-loin.jpg', '1', '2019-11-25 14:23:40', '2019-12-02 08:35:40'),
+(3, '24', '6', '1', 'Vim bar', '23', 'hello', 'hi', 'public/image/5ddbf377edee5Beef-loin.jpg', 'public/image/5ddbf377edb76download (8).jpg', '1', '2019-11-25 15:29:59', '2019-11-25 15:32:16'),
+(4, '22', '3', '1', 'Najirsal  5Kg', '250', 'Information can be thought of as the resolution of uncertainty; it is that which answers the question of \"what an entity is\" and thus defines both its essence and nature of its characteristics', 'Information can be thought of as the resolution of uncertainty; it is that which answers the question of \"what an entity is\" and thus defines both its essence and nature of its characteristi', 'public/image/5e202abf2ed8fdownload.jpg', 'public/image/5e202abf2eb8eimages.jpg', '1', '2020-01-16 09:19:59', '2020-01-16 09:19:59'),
+(5, '22', '5', '6', 'Rupchada 5 liter', '550', 'Information can be thought of as the resolution of uncertainty; it is that which answers the question of \"what an entity is\" and thus defines both its essence and nature of its characteristics', 'Information can be thought of as the resolution of uncertainty; it is that which answers the question of \"what an entity is\" and thus defines both its essence and nature of its characteristics', 'public/image/5e202b3299581download (1).jpg', 'public/image/5e202b32992d8rupchada.jpg', '1', '2020-01-16 09:21:54', '2020-01-16 09:21:54'),
+(6, '22', '8', '3', 'Leder Shoe', '2300', 'Information can be thought of as the resolution of uncertainty; it is that which answers the question of \"what an entity is\" and thus defines both its essence and nature of its characteristics', 'Information can be thought of as the resolution of uncertainty; it is that which answers the question of \"what an entity is\" and thus defines both its essence and nature of its characteristics', 'public/image/5e202b5d7ced9download (2).jpg', 'public/image/5e202b5d7c557dg-319-red-spider-sports-6-digitrendzz-red-original-imafehyf2gfpbuj4.jpeg', '1', '2020-01-16 09:22:37', '2020-01-16 09:22:37');
 
 -- --------------------------------------------------------
 
@@ -224,7 +333,11 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (17, '2019_11_13_170236_create_doctor_chambers_table', 11),
 (18, '2019_11_15_180916_create_menus_table', 12),
 (19, '2019_11_15_194949_create_restaurent_categories_table', 13),
-(20, '2019_11_17_150320_create_restaurent_products_table', 14);
+(20, '2019_11_17_150320_create_restaurent_products_table', 14),
+(21, '2019_11_21_152712_create_doctor_categories_table', 15),
+(22, '2019_11_23_181450_create_grocery_menus_table', 16),
+(23, '2019_11_23_184144_create_grocery_categories_table', 17),
+(24, '2019_11_25_200016_create_grocery_products_table', 18);
 
 -- --------------------------------------------------------
 
@@ -427,9 +540,9 @@ CREATE TABLE `restaurent_products` (
 --
 
 INSERT INTO `restaurent_products` (`id`, `restaurent_id`, `product_category`, `menu`, `product_name`, `price`, `sortdescription`, `longdescription`, `thumbnail`, `image`, `status`, `created_at`, `updated_at`) VALUES
-(2, '12', '5', '2,4', 'Khachi', '150', NULL, NULL, 'public/image/5dd11bac3a68699629544-hen-heart-shape-vector-logo-design-logo-sign-icon-for-groceries-meat-stores-butcher-shop-farmer-mark.jpg', 'public/image/5dd11bac3a47666213448_2368675410057685_5221485204530528256_o.jpg', '1', '2019-11-17 10:06:36', '2019-11-17 12:01:08'),
-(3, '12', '4', '2,3', 'Beef Cow', '550', 'Definition of detail (Entry 2 of 2) transitive verb. 1 : to report minutely and distinctly : to report with close attention to small elements : specify detailed their grievances wrote a letter detailing her vacation. 2 : to assign to a particular task was detailed to another unit during maneuvers', 'Definition of detail (Entry 2 of 2) transitive verb. 1 : to report minutely and distinctly : to report with close attention to small elements : specify detailed their grievances wrote a letter detailing her vacation. 2 : to assign to a particular task was detailed to another unit during maneuversDefinition of detail (Entry 2 of 2) transitive verb. 1 : to report minutely and distinctly : to report with close attention to small elements : specify detailed their grievances wrote a letter detailing her vacation. 2 : to assign to a particular task was detailed to another unit during maneuversDefinition of detail (Entry 2 of 2) transitive verb. 1 : to report minutely and distinctly : to report with close attention to small elements : specify detailed their grievances wrote a letter detailing her vacation. 2 : to assign to a particular task was detailed to another unit during maneuvers', 'public/image/5dd126af817acdownload (8).jpg', 'public/image/5dd126af81475Beef-loin.jpg', '1', '2019-11-17 10:53:35', '2019-11-17 12:05:26'),
-(4, '12', '3', '2,3', 'Basmoti Rice', '15', 'Its good Quality', 'Its good Quality', 'public/image/5dd137739d9fadownload (9).jpg', 'public/image/5dd137739d6e3delish-u-rice-2-1529079587.jpg', '1', '2019-11-17 12:05:07', '2019-11-17 13:52:29'),
+(2, '12', '5', '2,4', 'Khachi', '150', NULL, NULL, 'public/image/5dd11bac3a68699629544-hen-heart-shape-vector-logo-design-logo-sign-icon-for-groceries-meat-stores-butcher-shop-farmer-mark.jpg', 'public/image/5dd11bac3a47666213448_2368675410057685_5221485204530528256_o.jpg', '1', '2019-11-17 10:06:36', '2019-11-22 12:36:42'),
+(3, '12', '4', '2', 'Beef Cow', '550', 'Definition of detail (Entry 2 of 2) transitive verb. 1 : to report minutely and distinctly : to report with close attention to small elements : specify detailed their grievances wrote a letter detailing her vacation. 2 : to assign to a particular task was detailed to another unit during maneuvers', 'Definition of detail (Entry 2 of 2) transitive verb. 1 : to report minutely and distinctly : to report with close attention to small elements : specify detailed their grievances wrote a letter detailing her vacation. 2 : to assign to a particular task was detailed to another unit during maneuversDefinition of detail (Entry 2 of 2) transitive verb. 1 : to report minutely and distinctly : to report with close attention to small elements : specify detailed their grievances wrote a letter detailing her vacation. 2 : to assign to a particular task was detailed to another unit during maneuversDefinition of detail (Entry 2 of 2) transitive verb. 1 : to report minutely and distinctly : to report with close attention to small elements : specify detailed their grievances wrote a letter detailing her vacation. 2 : to assign to a particular task was detailed to another unit during maneuvers', 'public/image/5dd7d4a99c5b4download (8).jpg', 'public/image/5dd126af81475Beef-loin.jpg', '1', '2019-11-17 10:53:35', '2019-11-25 10:26:08'),
+(4, '12', '3', '4', 'Basmoti Rice', '23', 'Its good Quality', 'Its Best Quality', 'public/image/5dd137739d9fadownload (9).jpg', 'public/image/5dd137739d6e3delish-u-rice-2-1529079587.jpg', '1', '2019-11-17 12:05:07', '2019-11-25 12:34:34'),
 (11, '23', '3', '3,4', 'Barger', '123', 'fgsdgf', 'fggfgf', 'public/image/5dd1734469fe5Beef-loin.jpg', 'public/image/5dd1734469d56Capture.PNG', '1', '2019-11-17 16:20:20', '2019-11-17 16:20:20'),
 (12, '23', '2', '2,3', 'tr', '123', 'rt', 'rt', 'public/image/5dd1738dd57d4Beef-loin.jpg', 'public/image/5dd1738dd55e7Capture.PNG', '0', '2019-11-17 16:21:33', '2019-11-17 16:27:55');
 
@@ -545,7 +658,8 @@ INSERT INTO `top_users` (`id`, `login_id`, `name`, `mobile`, `email`, `gender`, 
 (36, '20192208', 'Azad Khan', '77', 'admin@gmail.com', NULL, 'Dhaka-Uttara-1223', '$2y$10$KXYSdBvmZ3n25NwuCuYI2.17HXhsy4JEEXTPoedlfrTkiWTG5SifK', 'Vendor', 2, '1', NULL, NULL, '2019-11-15', '1111111', NULL, NULL, NULL, 'admin', 'admin', '2019-11-15 10:22:08', '2019-11-15 10:22:08'),
 (37, '20190951', 'Sayeed', '01798', 'new@gmail.com', NULL, 'mirpur 1212 house', '$2y$10$jMnyT8NH6440OHhzvJ4qV.JIMjCeWYo3tS44woGciGwlbVUFr5sUW', 'Vendor', 2, '1', NULL, NULL, '2019-11-17', '434', NULL, NULL, NULL, '32', '32', '2019-11-17 14:09:51', '2019-11-17 14:09:51'),
 (39, '20191001', 'Sayeed', '2121', 'admin@gmail.com', NULL, 'mirpur 1212 house', '$2y$10$Z/RPiEMetH.DgeXSJARUfuDsYgeQK.rmohwyRjY7jrqGTvSP2eMDC', 'Vendor', 2, '1', NULL, NULL, '2019-11-18', '43546545', NULL, NULL, NULL, '32', '32', '2019-11-18 10:10:01', '2019-11-18 10:10:01'),
-(40, '22282019', 'TopLine', '34443', 'admin@gmail.com', 'Female', NULL, '$2y$10$W67Fwz.3MgrS2LhZxLXmpe2sjQv97d0Kmsvxmg3r9V2tMetC/QiV6', 'Guest', 3, '1', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-11-18 10:22:28', '2019-11-18 10:22:28');
+(40, '22282019', 'TopLine', '34443', 'admin@gmail.com', 'Female', 'mirpur 1212 house', '$2y$10$W67Fwz.3MgrS2LhZxLXmpe2sjQv97d0Kmsvxmg3r9V2tMetC/QiV6', 'Verified', 3, '1', NULL, 'public/image/5de536380fce899629544-hen-heart-shape-vector-logo-design-logo-sign-icon-for-groceries-meat-stores-butcher-shop-farmer-mark.jpg', NULL, '3565656', NULL, NULL, NULL, NULL, NULL, '2019-11-18 10:22:28', '2019-12-02 16:05:12'),
+(41, '51302019', 'Dr Farhana', '444', NULL, 'Female', 'Dhaka-Uttara-1223', '$2y$10$e.GV9zW0paKBrtgjLeOMbuXQqwVIJxi5Y98iNhHND69gmGMHI7jqu', 'Verified', 3, '1', NULL, 'public/image/5de52b3c97590A0322422.jpg', '2019-12-02', '43546545', NULL, NULL, NULL, NULL, NULL, '2019-12-02 14:51:30', '2019-12-23 10:15:59');
 
 -- --------------------------------------------------------
 
@@ -620,18 +734,18 @@ CREATE TABLE `vendors` (
 --
 
 INSERT INTO `vendors` (`id`, `service_id`, `vendor_name`, `vendor_logo`, `Pro_name`, `mobile`, `email`, `user_id`, `nid`, `tin`, `bank`, `address`, `agreement`, `agr_date`, `contact_name`, `Contact_mobile`, `slider`, `map`, `joindate`, `password`, `created_by`, `updated_by`, `total_view`, `vendor_id`, `slug`, `special`, `openday`, `opentime`, `closeday`, `closetime`, `sortdescription`, `longdescription`, `created_at`, `updated_at`) VALUES
-(10, '3', 'BRB Hospital', 'public/image/5dbc25e46de46download (1).jpg', 'BRB Hospital', '01318712782', 'admin@gmail.com', '1', '1234579564', '1', '121314', 'dhanmondi dhaka', 'public/image/5daf1b0d0ff48fortune.png', '2019-10-22', 'BRB Hos', '4444444444', 'public/image/5dc96721be5a0fff.jpg', NULL, '2019-10-22', '$2y$10$EdppV6a.Gfa7p8G6YSpU..6H2pF53tR0BeRwJh.48FOXLGp73uoNe', 'admin', 'admin', NULL, '20190653', 'brbhospital', 'head,cergary,medichine brb', 'mon-friday', '9AM-5PM', 'Hotline', '01750758262', 'BRB', 'Hello BRB', '2019-10-22 15:06:53', '2019-11-11 13:50:57'),
-(11, '4', 'Mahmudul islam', 'public/image/5dcab8d9a84dfA0322422.jpg', 'Bangladesh Hospital', '01318712782', 'admin@gmail.com', '2', '1111', '12', '1214565', 'Dhaka-Uttara-1223', 'public/image/5db07ae2a44a6mirzapore.png', '2019-10-22', 'BRB Hos', '37', 'public/image/5dcc2e9d2b4ddimages (3).jpg', NULL, '2019-10-22', '$2y$10$lcOzTWdQveHOmYLplD5jjO/l1zofOFxes2Pzjjm7KTSvUyyBHV/Wa', 'admin', 'admin', NULL, '20191002', 'drmahmudul', 'Heart Specialist', 'mon-friday', NULL, NULL, NULL, 'Find website slider stock images in HD and millions of other royalty-free stock photos, illustrations and vectors in the Shutterstock collection. Thousands of new Find website slider stock images in HD and millions of other royalty-free stock photos, illustrations and vectors in the Shutterstock collection. Thousands of new', 'Find website slider stock images in HD and millions of other royalty-free stock photos, illustrations and vectors in the Shutterstock collection. Thousands of new Find website slider stock images in HD and millions of other royalty-free stock photos, illustrations and vectors in the Shutterstock collection. Thousands of new', '2019-10-22 15:10:03', '2019-11-13 16:26:37'),
-(12, '2', 'Silver Fork', 'public/image/5dcfca54e425c99629544-hen-heart-shape-vector-logo-design-logo-sign-icon-for-groceries-meat-stores-butcher-shop-farmer-mark.jpg', 'Milon', '01968949468', 'admin@gmail.com', '3', '1234579564', '2', '121314', 'Green Road, Dhaka 1212', 'public/image/5db033bfde035pdf.pdf', '2019-10-23', 'Reza', NULL, 'public/image/5dcfcca122bc8wp1874156.jpg', NULL, '2019-10-23', '$2y$10$xJDQVq3qjOAKGh3OkD4z0uH73jSL83u/VC1Gy4wPaIIZMPndJ6vD.', 'admin', '32', NULL, '20190431', 'sliverfork', 'Fastfood & Bakery', 'EveryDay', '9AM-5PM', 'Hotline', '01750758262', 'Breakfast Restaurants in Dhaka Division. Lunch Restaurants in Dhaka Division. Dinner Restaurants in Dhaka Division. Bakeries in Dhaka Division.', 'Breakfast Restaurants in Dhaka Division. Lunch Restaurants in Dhaka Division. Dinner Restaurants in Dhaka Division. Bakeries in Dhaka Division. Buffet Restaurants in Dhaka Division. Coffee & Tea in Dhaka Division. Desserts in Dhaka Division. Food Delivery Restaurants in Dhaka Division.', '2019-10-23 11:04:32', '2019-11-17 12:09:05'),
-(13, '5', 'Nur\'s Tour & Travels', 'public/image/5db1943600e35alu.png', 'Nur Mia', '01318712782', 'admin@gmail.com', '4', '1234579564', NULL, '121314', 'Green Road, Dhaka 1212', 'public/image/5db1943600be1nido.png', '2019-10-24', NULL, NULL, NULL, NULL, '2019-10-24', '$2y$10$OtLoPx0JFfjoRx613A7NTOGxCUAgJ7/el0S1G44n3hgN.Rzg8PSCu', 'admin', 'admin', NULL, '20190822', 'noortour', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-10-24 12:08:22', '2019-11-02 11:45:31'),
-(14, '3', 'Square Hospital', 'public/image/5dc82a7aab66edownload.png', 'Sayeed', '234562345', 'admin@gmail.com', '13', '43546545', NULL, NULL, 'mirpur 1212 house', 'public/image/5db57265429c159777608-software-development-programmer-working-on-computer-programming-mechanism-concept-.jpg', '2019-10-10', 'Saiful', NULL, 'public/image/5dc834563c04c3523-ACH-Restaurant-slider-images_0013.jpg', NULL, '2019-10-27', '$2y$10$is4Isw4RM5IJP1I0wivWqumbo6FDg91Gyr5aX4hNf7pWokbH.1rIC', 'admin', 'admin', NULL, '20193309', 'Square', 'head,cergary,medichine', 'mon-friday', '9AM-5PM', 'Hotline', '01750758262', 'A hospital is a health care institution providing patient treatment with specialized medical and nursing staff and medical equipment.', 'A hospital is a health care institution providing patient treatment with specialized medical and nursing staff and medical equipment.A hospital is a health care institution providing patient treatment with specialized medical and nursing staff and medical equipment.A hospital is a health care institution providing patient treatment with specialized medical and nursing staff and medical equipment.', '2019-10-27 10:33:09', '2019-11-15 15:47:42'),
-(15, '3', 'Ibn sina hospital', 'public/image/5dbd58aa3f5dfddddd.jpg', 'Malik Mollik', '0198345643', 'admin@gmail.com', '22', '1111', NULL, '121314', 'Green Road, Dhaka 1212', 'public/image/5dbd58aa3f38cddddd.jpg', '2019-11-02', 'Saiful', '14', 'public/image/5dc976dd63728images (1).jpg', NULL, '2019-11-02', '$2y$10$nFy10K3xEpDYMwJMluCG7edXNr/PvdyfoghwnAqWmB3NzJYXjVsy2', 'admin', 'admin', NULL, '20192130', 'ibnsina', 'head,cergary,medichine brb', 'mon-friday', '9AM-5PM', 'Hotline', '01750758262', 'patient treatment with specialized medical and nursing staff and medical equipment.', 'patient treatment with specialized medical and nursing staff and medical equipment.', '2019-11-02 10:21:30', '2019-11-11 14:57:45'),
-(18, '3', 'ShahJalal Diagonistic Center', 'public/image/5dcaa50a090dforganic-corn.jpg', 'Tofial Islam', '01720121932', 'info@gmail.com', '28', '1111', NULL, '121314', 'paikpara, B.Baria', 'public/image/5dcaa50a08e04fe.jpg', '2019-11-12', 'Mohsin', '01720121932', 'public/image/5dcaa72b227e4images (2).jpg', NULL, '2019-11-12', '$2y$10$OxZqFtQOkYNn1Y4b2keFkedbtnxz80tZh8urvMXlBc61b.BvCqVWO', 'admin', 'admin', NULL, '20192650', 'ShahjalalDC', NULL, 'EveryDay', '24 Hours', 'Hotline', '01750758262', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis qui aspernatur ad eaque reiciendis ipsum.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis qui aspernatur ad eaque reiciendis ipsum.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis qui aspernatur ad eaque reiciendis ipsum.', '2019-11-12 12:26:50', '2019-11-12 12:35:55'),
-(20, '4', 'Ismail Sarker', 'public/image/5dcad52f227a6download (5).jpg', 'Ismail', '1414', 'new@gmail.com', '30', '434', NULL, '01670078232', 'Dhaka-Uttara-1223', 'public/image/5dcab9bcdbc7fCapture.PNG', '2019-11-12', 'Saiful', '10', 'public/image/5dcac99b904e9Capture.PNG', NULL, '2019-11-12', '$2y$10$vdgtDO1JBiFilSCejphAJuovUgv5ZFzyu6WGhQ21KzMgIW2yBNhhO', 'admin', 'admin', NULL, '20195508', 'ismailsarker', 'Heart Specialist', 'MBBS', NULL, NULL, NULL, 'Phasellus congue lacus eget neque. Phasellus ornare, ante vitae consectetuer consequat, purus sapien ultricies dolor.', 'Phasellus congue lacus eget neque. Phasellus ornare, ante vitae consectetuer consequat, purus sapien ultricies dolor.Phasellus congue lacus eget neque. Phasellus ornare, ante vitae consectetuer consequat, purus sapien ultricies dolor.', '2019-11-12 13:55:09', '2019-11-13 13:59:33'),
-(21, '4', 'Dr.Md Mahmud Ahmad', 'public/image/5dcc2b0a31cf1doddwnload.jpg', 'Mahmud Islam', '1515', 'mahnud@gmail.com', '31', '54545', NULL, '01670078232', 'Dhaka-Uttara-1223', 'public/image/5dcc2b0a318f2Capture.PNG', '2019-11-13', 'Saiful', '9', 'public/image/5dcc2b9489d57images (2).jpg', NULL, '2019-11-13', '$2y$10$qWH56AEBR3m1MpibsdjRT.irwO.PojxMA2t8wbkvy2cARnkKNaaQ6', 'admin', 'admin', NULL, '20191050', 'mahmud', 'Heart Specialist & Cardilojist', 'MBBS', NULL, NULL, NULL, 'If you would like to perform a \"left join\" or \"right join\" instead of an \"inner join\", use the leftJoin or rightJoin methods. These methods have the same signature as the join', 'If you would like to perform a \"left join\" or \"right join\" instead of an \"inner join\", use the leftJoin or rightJoin methods. These methods have the same signature as the joinIf you would like to perform a \"left join\" or \"right join\" instead of an \"inner join\", use the leftJoin or rightJoin methods. These methods have the same signature as the join', '2019-11-13 16:10:50', '2019-11-13 16:14:04'),
-(22, '7', 'Azad Super Store', 'public/image/5dce7c501baa199629544-hen-heart-shape-vector-logo-design-logo-sign-icon-for-groceries-meat-stores-butcher-shop-farmer-mark.jpg', 'Azad Khan', '77', 'admin@gmail.com', '36', '1111111', NULL, '01670078232', 'Dhaka-Uttara-1223', 'public/image/5dce7c501b7ebattachment_68562158.jpg', '2019-11-15', 'sayeed', '13', NULL, NULL, '2019-11-15', '$2y$10$KVR90UhtqNWqrUGinbwMLuXY1eMkq9E.LfZ4AzeZ7uQr9XfqfaDNq', 'admin', 'admin', NULL, '20192208', 'AzadSuperStore', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-11-15 10:22:08', '2019-11-15 10:22:08'),
-(23, '2', 'Simana Coffe House', 'public/image/5dd154af35fff66213448_2368675410057685_5221485204530528256_o.jpg', 'Sayeed', '01798', 'new@gmail.com', '37', '434', NULL, '019', 'mirpur 1212 house', 'public/image/5dd154af35d3066213448_2368675410057685_5221485204530528256_o.jpg', '2019-11-17', 'Saiful', '21', 'public/image/5dd155459f8da3523-ACH-Restaurant-slider-images_0013.jpg', NULL, '2019-11-17', '$2y$10$FgTOj3sO6EeCocHkjAbG6eLJwzTh51NzNEhioJgIjaVnp0P6FlIOe', '32', '32', NULL, '20190951', 'simana', 'Coffe & Snack', 'EveryDay', '9AM-5PM', 'Hotline', '01750758262', '\"Good Game\" 1. A polite remark uttered after the end of a round, game, or other measured interval to indicate that a match was fair and enjoyable. Usually', '\"Good Game\" 1. A polite remark uttered after the end of a round, game, or other measured interval to indicate that a match was fair and enjoyable. Usually \"Good Game\" 1. A polite remark uttered after the end of a round, game, or other measured interval to indicate that a match was fair and enjoyable. Usually', '2019-11-17 14:09:51', '2019-11-17 14:13:39'),
-(24, '7', 'Sayeed Super Store', 'public/image/5dd26df9175e066213448_2368675410057685_5221485204530528256_o.jpg', 'Sayeed', '2121', 'admin@gmail.com', '39', '43546545', NULL, '01720', 'mirpur 1212 house', 'public/image/5dd26df91731199629544-hen-heart-shape-vector-logo-design-logo-sign-icon-for-groceries-meat-stores-butcher-shop-farmer-mark.jpg', '2019-11-18', 'Saiful', '10', NULL, NULL, '2019-11-18', '$2y$10$6ryo1IXn0RDEqYvVsEUdHeYtSBGTzVvLFAi2C/VNclLgK56qSdk2G', '32', '32', NULL, '20191001', 'SSS', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-11-18 10:10:01', '2019-11-18 10:10:01');
+(10, '3', 'BRB Hospital', 'public/image/5dbc25e46de46download (1).jpg', 'BRB Hospital', '01318712782', 'admin@gmail.com', '1', '1234579564', '1', '121314', 'dhanmondi dhaka', 'public/image/5daf1b0d0ff48fortune.png', '2019-10-22', 'BRB Hos', '4444444444', 'public/image/5dc96721be5a0fff.jpg', NULL, '2019-10-22', '$2y$10$EdppV6a.Gfa7p8G6YSpU..6H2pF53tR0BeRwJh.48FOXLGp73uoNe', '6', '6', NULL, '20190653', 'brbhospital', 'head,cergary,medichine brb', 'mon-friday', '9AM-5PM', 'Hotline', '01750758262', 'BRB', 'Hello BRB', '2019-10-22 15:06:53', '2019-11-11 13:50:57'),
+(11, '4', 'Mahmudul islam', 'public/image/5dcab8d9a84dfA0322422.jpg', 'Bangladesh Hospital', '01318712782', 'admin@gmail.com', '2', '111166', '12', '1214565', 'Dhaka-Uttara-1223', 'public/image/5db07ae2a44a6mirzapore.png', '2019-10-22', 'BRB Hos', '37', 'public/image/5dcc2e9d2b4ddimages (3).jpg', NULL, '2019-10-22', '$2y$10$lcOzTWdQveHOmYLplD5jjO/l1zofOFxes2Pzjjm7KTSvUyyBHV/Wa', '6', '6', NULL, '20191002', 'drmahmudul', 'Heart Specialist', 'mon-friday', NULL, NULL, NULL, 'Find website slider stock images in HD and millions of other royalty-free stock photos, illustrations and vectors in the Shutterstock collection. Thousands of new Find website slider stock images in HD and millions of other royalty-free stock photos, illustrations and vectors in the Shutterstock collection. Thousands of new', 'Find website slider stock images in HD and millions of other royalty-free stock photos, illustrations and vectors in the Shutterstock collection. Thousands of new Find website slider stock images in HD and millions of other royalty-free stock photos, illustrations and vectors in the Shutterstock collection. Thousands of new', '2019-10-22 15:10:03', '2019-11-18 13:44:22'),
+(12, '2', 'Silver Fork', 'public/image/5dcfca54e425c99629544-hen-heart-shape-vector-logo-design-logo-sign-icon-for-groceries-meat-stores-butcher-shop-farmer-mark.jpg', 'Milon', '01968949468', 'admin@gmail.com', '3', '1234579564', '2', '12131466', 'Green Road, Dhaka 1212', 'public/image/5db033bfde035pdf.pdf', '2019-10-23', 'Reza', '14', 'public/image/5dcfcca122bc8wp1874156.jpg', NULL, '2019-10-23', '$2y$10$xJDQVq3qjOAKGh3OkD4z0uH73jSL83u/VC1Gy4wPaIIZMPndJ6vD.', '6', '6', NULL, '20190431', 'sliverfork', 'Fastfood & Bakery', 'EveryDay', '9AM-5PM', 'Hotline', '01750758262', 'Breakfast Restaurants in Dhaka Division. Lunch Restaurants in Dhaka Division. Dinner Restaurants in Dhaka Division. Bakeries in Dhaka Division.', 'Breakfast Restaurants in Dhaka Division. Lunch Restaurants in Dhaka Division. Dinner Restaurants in Dhaka Division. Bakeries in Dhaka Division. Buffet Restaurants in Dhaka Division. Coffee & Tea in Dhaka Division. Desserts in Dhaka Division. Food Delivery Restaurants in Dhaka Division.', '2019-10-23 11:04:32', '2019-11-18 13:48:42'),
+(13, '5', 'Nur\'s Tour & Travels', 'public/image/5db1943600e35alu.png', 'Nur Mia', '01318712782', 'admin@gmail.com', '4', '1234579564', NULL, '121314', 'Green Road, Dhaka 1212', 'public/image/5db1943600be1nido.png', '2019-10-24', NULL, NULL, NULL, NULL, '2019-10-24', '$2y$10$OtLoPx0JFfjoRx613A7NTOGxCUAgJ7/el0S1G44n3hgN.Rzg8PSCu', '6', '6', NULL, '20190822', 'noortour', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2019-10-24 12:08:22', '2019-11-02 11:45:31'),
+(14, '3', 'Square Hospital', 'public/image/5dc82a7aab66edownload.png', 'Sayeed', '234562345', 'admin@gmail.com', '13', '43546545', NULL, NULL, 'mirpur 1212 house', 'public/image/5db57265429c159777608-software-development-programmer-working-on-computer-programming-mechanism-concept-.jpg', '2019-10-10', 'Saiful', NULL, 'public/image/5dc834563c04c3523-ACH-Restaurant-slider-images_0013.jpg', NULL, '2019-10-27', '$2y$10$is4Isw4RM5IJP1I0wivWqumbo6FDg91Gyr5aX4hNf7pWokbH.1rIC', '6', '6', NULL, '20193309', 'Square', 'head,cergary,medichine', 'mon-friday', '9AM-5PM', 'Hotline', '01750758262', 'A hospital is a health care institution providing patient treatment with specialized medical and nursing staff and medical equipment.', 'A hospital is a health care institution providing patient treatment with specialized medical and nursing staff and medical equipment.A hospital is a health care institution providing patient treatment with specialized medical and nursing staff and medical equipment.A hospital is a health care institution providing patient treatment with specialized medical and nursing staff and medical equipment.', '2019-10-27 10:33:09', '2019-11-15 15:47:42'),
+(15, '3', 'Ibn sina hospital', 'public/image/5dbd58aa3f5dfddddd.jpg', 'Malik Mollik', '0198345643', 'admin@gmail.com', '22', '1111', NULL, '121314', 'Green Road, Dhaka 1212', 'public/image/5dbd58aa3f38cddddd.jpg', '2019-11-02', 'Saiful', '14', 'public/image/5dc976dd63728images (1).jpg', NULL, '2019-11-02', '$2y$10$nFy10K3xEpDYMwJMluCG7edXNr/PvdyfoghwnAqWmB3NzJYXjVsy2', '6', '6', NULL, '20192130', 'ibnsina', 'head,cergary,medichine brb', 'mon-friday', '9AM-5PM', 'Hotline', '01750758262', 'patient treatment with specialized medical and nursing staff and medical equipment.', 'patient treatment with specialized medical and nursing staff and medical equipment.', '2019-11-02 10:21:30', '2019-11-11 14:57:45'),
+(18, '3', 'ShahJalal Diagonistic Center', 'public/image/5dcaa50a090dforganic-corn.jpg', 'Tofial Islam', '01720121932', 'info@gmail.com', '28', '1111', NULL, '121314', 'paikpara, B.Baria', 'public/image/5dcaa50a08e04fe.jpg', '2019-11-12', 'Mohsin', '01720121932', 'public/image/5dcaa72b227e4images (2).jpg', NULL, '2019-11-12', '$2y$10$OxZqFtQOkYNn1Y4b2keFkedbtnxz80tZh8urvMXlBc61b.BvCqVWO', '6', '6', NULL, '20192650', 'ShahjalalDC', NULL, 'EveryDay', '24 Hours', 'Hotline', '01750758262', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis qui aspernatur ad eaque reiciendis ipsum.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis qui aspernatur ad eaque reiciendis ipsum.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis qui aspernatur ad eaque reiciendis ipsum.', '2019-11-12 12:26:50', '2019-11-12 12:35:55'),
+(20, '4', 'Ismail Sarker', 'public/image/5dcad52f227a6download (5).jpg', 'Ismail', '1414', 'new@gmail.com', '30', '434', NULL, '01670078232', 'Dhaka-Uttara-1223', 'public/image/5dcab9bcdbc7fCapture.PNG', '2019-11-12', 'Saiful', '10', 'public/image/5dcac99b904e9Capture.PNG', NULL, '2019-11-12', '$2y$10$vdgtDO1JBiFilSCejphAJuovUgv5ZFzyu6WGhQ21KzMgIW2yBNhhO', '6', '6', NULL, '20195508', 'ismailsarker', 'medicine,Neuroradiology,Cardiothoracic', 'MBBS', NULL, NULL, NULL, 'Phasellus congue lacus eget neque. Phasellus ornare, ante vitae consectetuer consequat, purus sapien ultricies dolor.', 'Phasellus congue lacus eget neque. Phasellus ornare, ante vitae consectetuer consequat, purus sapien ultricies dolor.Phasellus congue lacus eget neque. Phasellus ornare, ante vitae consectetuer consequat, purus sapien ultricies dolor.', '2019-11-12 13:55:09', '2019-11-25 10:46:44'),
+(21, '4', 'Dr.Md Mahmud Ahmad', 'public/image/5dcc2b0a31cf1doddwnload.jpg', 'Mahmud Islam', '1515', 'mahnud@gmail.com', '31', '54545', NULL, '01670078232', 'Dhaka-Uttara-1223', 'public/image/5dcc2b0a318f2Capture.PNG', '2019-11-13', 'Saiful', '9', 'public/image/5dcc2b9489d57images (2).jpg', NULL, '2019-11-13', '$2y$10$qWH56AEBR3m1MpibsdjRT.irwO.PojxMA2t8wbkvy2cARnkKNaaQ6', '6', '6', NULL, '20191050', 'mahmud', 'Heart Specialist & Cardilojist', 'MBBS', NULL, NULL, NULL, 'If you would like to perform a \"left join\" or \"right join\" instead of an \"inner join\", use the leftJoin or rightJoin methods. These methods have the same signature as the join', 'If you would like to perform a \"left join\" or \"right join\" instead of an \"inner join\", use the leftJoin or rightJoin methods. These methods have the same signature as the joinIf you would like to perform a \"left join\" or \"right join\" instead of an \"inner join\", use the leftJoin or rightJoin methods. These methods have the same signature as the join', '2019-11-13 16:10:50', '2019-11-13 16:14:04'),
+(22, '7', 'Azad Super Store', 'public/image/5dce7c501baa199629544-hen-heart-shape-vector-logo-design-logo-sign-icon-for-groceries-meat-stores-butcher-shop-farmer-mark.jpg', 'Azad Khan', '77', 'admin@gmail.com', '36', '1111111', NULL, '01670078232', 'Dhaka-Uttara-1223', 'public/image/5dce7c501b7ebattachment_68562158.jpg', '2019-11-15', 'sayeed', '13', 'public/image/5e20296e30207banner_01_1.jpg', NULL, '2019-11-15', '$2y$10$KVR90UhtqNWqrUGinbwMLuXY1eMkq9E.LfZ4AzeZ7uQr9XfqfaDNq', '6', '6', NULL, '20192208', 'AzadSuperStore', 'Azad Super Store', NULL, NULL, NULL, NULL, NULL, NULL, '2019-11-15 10:22:08', '2020-01-16 09:14:22'),
+(23, '2', 'Simana Coffe House', 'public/image/5dd154af35fff66213448_2368675410057685_5221485204530528256_o.jpg', 'Sayeed', '01798', 'new@gmail.com', '37', '434', NULL, '019', 'mirpur 1212 house', 'public/image/5dd154af35d3066213448_2368675410057685_5221485204530528256_o.jpg', '2019-11-17', 'Saiful', '21', 'public/image/5dd155459f8da3523-ACH-Restaurant-slider-images_0013.jpg', NULL, '2019-11-17', '$2y$10$FgTOj3sO6EeCocHkjAbG6eLJwzTh51NzNEhioJgIjaVnp0P6FlIOe', '32', '6', NULL, '20190951', 'simanaj', 'Coffe & Snack', 'EveryDay', '9AM-5PM', 'Hotline', '01750758262', '\"Good Game\" 1. A polite remark uttered after the end of a round, game, or other measured interval to indicate that a match was fair and enjoyable. Usually', '\"Good Game\" 1. A polite remark uttered after the end of a round, game, or other measured interval to indicate that a match was fair and enjoyable. Usually \"Good Game\" 1. A polite remark uttered after the end of a round, game, or other measured interval to indicate that a match was fair and enjoyable. Usually', '2019-11-17 14:09:51', '2019-11-18 14:02:03'),
+(24, '7', 'Sayeed Super Store', 'public/image/5dd26df9175e066213448_2368675410057685_5221485204530528256_o.jpg', 'Sayeed', '2121', 'admin@gmail.com', '39', '43546545', NULL, '01720', 'mirpur 1212 house', 'public/image/5dd26df91731199629544-hen-heart-shape-vector-logo-design-logo-sign-icon-for-groceries-meat-stores-butcher-shop-farmer-mark.jpg', '2019-11-18', 'Saiful', '10', 'public/image/5dd9423aaa30cBeef-loin.jpg', NULL, '2019-11-18', '$2y$10$6ryo1IXn0RDEqYvVsEUdHeYtSBGTzVvLFAi2C/VNclLgK56qSdk2G', '32', '32', NULL, '20191001', 'SSS', 'Truest Online Shop', 'EveryDay', '9AM-9PM', 'Hotline', '01750758262', 'Middleware functions are functions that have access to the request object (req), the response object (res), and the next middleware function in the application’s request-response cycle. These functions are used to modify req and res objects for tasks like parsing request bodies, adding response headers, etc.', 'Middleware functions are functions that have access to the request object (req), the response object (res), and the next middleware function in the application’s request-response cycle. These functions are used to modify req and res objects for tasks like parsing request bodies, adding response headers, etc.Middleware functions are functions that have access to the request object (req), the response object (res), and the next middleware function in the application’s request-response cycle. These functions are used to modify req and res objects for tasks like parsing request bodies, adding response headers, etc.', '2019-11-18 10:10:01', '2019-11-23 14:31:50');
 
 --
 -- Indexes for dumped tables
@@ -650,9 +764,33 @@ ALTER TABLE `doctors`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `doctor_categories`
+--
+ALTER TABLE `doctor_categories`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `doctor_chambers`
 --
 ALTER TABLE `doctor_chambers`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `grocery_categories`
+--
+ALTER TABLE `grocery_categories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `grocery_menus`
+--
+ALTER TABLE `grocery_menus`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `grocery_products`
+--
+ALTER TABLE `grocery_products`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -803,10 +941,34 @@ ALTER TABLE `doctors`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
+-- AUTO_INCREMENT for table `doctor_categories`
+--
+ALTER TABLE `doctor_categories`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `doctor_chambers`
 --
 ALTER TABLE `doctor_chambers`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `grocery_categories`
+--
+ALTER TABLE `grocery_categories`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `grocery_menus`
+--
+ALTER TABLE `grocery_menus`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `grocery_products`
+--
+ALTER TABLE `grocery_products`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `hospital_services`
@@ -824,7 +986,7 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `oauth_clients`
@@ -854,7 +1016,7 @@ ALTER TABLE `restaurent_categories`
 -- AUTO_INCREMENT for table `restaurent_products`
 --
 ALTER TABLE `restaurent_products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -872,7 +1034,7 @@ ALTER TABLE `services`
 -- AUTO_INCREMENT for table `top_users`
 --
 ALTER TABLE `top_users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `users`

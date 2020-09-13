@@ -20,4 +20,17 @@ class HomeController extends Controller{
             'service'=>$service
         ]);
     }
+
+    public function shipping(){
+        return view('FrontEnd.shipping');
+    }
+
+    public function cartshow(){
+        return view('FrontEnd.cartshow');
+    }
+
+    public function addtocart(Request $request){
+
+        dd($request->all());
+    }
 }

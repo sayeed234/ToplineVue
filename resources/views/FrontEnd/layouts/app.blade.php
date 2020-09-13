@@ -8,7 +8,7 @@
   <title>@yield('title')</title>
 
   <!-- Stylesheets -->
-  <link href="{{asset('/css/app.css')}}" rel="stylesheet" />
+  <link href="{{asset('/css/app.css')}}" rel="stylesheet" /> 
   <link href="{{asset('/css/topline.css')}}" rel="stylesheet" />
   <!-- GOOGLE FONTS -->
   <link href='http://fonts.googleapis.com/css?family=Raleway:400,700,600,800%7COpen+Sans:400italic,400,600,700' rel='stylesheet' type='text/css'>
@@ -19,6 +19,90 @@
   <![endif]-->
  
 </head>
+<style>
+/*body {
+  font-family: "Lato", sans-serif;
+}*/
+
+.sidebar {
+  min-height: 90%;
+  width: 0;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  right: 0;
+  background-color: #85b7b0;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidebar a {
+  padding: 0px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 10px;
+  color: #ffffff;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  left: 10px;
+  font-size: 36px;
+  margin-right: 2px;
+  margin-top: 20%;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color: #444;
+}
+
+#main {
+  transition: margin-right .5s;
+  padding: 16px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 250px;
+  right: 10px;
+  z-index: 100;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color:teal;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+#myBtn:hover {
+  background-color: #555;
+}
+</style>
 <body>
       
   @include('FrontEnd.partial.header')
@@ -139,9 +223,26 @@
     </div>
   </div>
 </div>
+  <div id="app">
+    @yield('content')
+    {{-- add to cart  --}}
 
-  @yield('content')
+    {{-- <cart></cart> --}}
+  </div>
+  
   <!-- OUR PARTNER SLIDER BEGIN -->
+
+
+  
+ {{-- <button class="openbtn" onclick="openNav()"  id="myBtn" title="Product Cart"><i class="fa fa-cart-arrow-down"></i>
+  <p>0 Items</p>
+  <hr>
+  <p style="background-color: gray">$ 0000</p>
+ </button>
+
+  <div id="mySidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+  </div> --}}
   
   <!-- END OUR PARTNER SLIDER -->
   
@@ -151,5 +252,7 @@
 
   <script src="{{asset('/js/app.js')}}"></script>
   <script src="{{asset('/js/Topline.js')}}"></script>
+  @yield('script')
+  
 </body>
 </html>
